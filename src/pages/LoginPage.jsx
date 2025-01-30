@@ -1,27 +1,30 @@
+import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast"; // Import react-hot-toast
+import { toast } from "react-hot-toast";
+import { useAuth } from "../context/AuthContext";
 
-function Login() {
+const LoginPage = () => {
+  const { login } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // Loading state
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    setIsLoading(true); // Start loading
-    if (username === "admin" && password === "admin") {
-      setTimeout(() => {
-        localStorage.setItem("auth", "true");
+    setIsLoading(true);
+
+    // Simulating API login
+    setTimeout(() => {
+      if (username === "admin" && password === "admin") {
+        login({ username }); // Call login from AuthContext
         toast.success("Login successful!");
         navigate("/todo");
-      }, 1500); // Simulate a loading delay
-    } else {
-      setTimeout(() => {
-        toast.error("Invalid username or password"); // Error notification
-        setIsLoading(false); // Stop loading on error
-      }, 1500); // Simulate a loading delay
-    }
+      } else {
+        toast.error("Invalid username or password");
+      }
+      setIsLoading(false);
+    }, 1500);
   };
 
   return (
@@ -30,8 +33,7 @@ function Login() {
         className="w-full max-w-md bg-white rounded-lg shadow-xl dark:bg-gray-800 dark:border-gray-700 p-8 
         transition-all duration-500 ease-in-out
         hover:shadow-lg hover:shadow-teal-500/50
-        focus:outline-none focus:ring-4 focus:ring-teal-500/50 
-        glow-effect"
+        focus:outline-none focus:ring-4 focus:ring-teal-500/50"
       >
         <h1 className="text-2xl font-bold text-center text-gray-900 dark:text-white mb-6">
           Login to your account
@@ -79,7 +81,7 @@ function Login() {
             className="btn glass w-full text-teal-500 font-bold text-lg rounded-lg px-8 py-3 text-center flex items-center justify-center space-x-2 transition-all"
           >
             {isLoading ? (
-              <span className=" loading loading-ring loading-lg text-teal-300 absolute left-1/2 transform -translate-x-1/2"></span>
+              <span className="loading loading-ring loading-lg text-teal-300 absolute left-1/2 transform -translate-x-1/2"></span>
             ) : (
               "Login"
             )}
@@ -88,6 +90,6 @@ function Login() {
       </div>
     </section>
   );
-}
+};
 
-export default Login;
+export default LoginPage;

@@ -4,20 +4,25 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import Login from "./Pages/Login";
-import ToDo from "./Pages/Todo";
+import Login from "./pages/LoginPage";
+import ToDo from "./pages/TodoPage";
+import { AuthProvider } from "./context/AuthContext"; // Import AuthProvider
 import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/todo" element={<ToDo />} />
-      </Routes>
-      <Toaster />
-    </Router>
+    <AuthProvider>
+      {" "}
+      {/* Wrap the Routes with AuthProvider */}
+      <Router>
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/todo" element={<ToDo />} />
+        </Routes>
+        <Toaster />
+      </Router>
+    </AuthProvider>
   );
 }
 

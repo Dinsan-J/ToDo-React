@@ -1,15 +1,16 @@
+import React from "react";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
-import Header from "../Components/Header";
+import Header from "../components/Header";
 
-function ToDo() {
+function TodoPage() {
   const [todos, setTodos] = useState([]);
   const [selectedTodo, setSelectedTodo] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
   const popupRef = useRef(null);
-  const todosPerPage = 8;
+  const todosPerPage = 9;
   const pagesVisited = pageNumber * todosPerPage;
 
   useEffect(() => {
@@ -65,7 +66,7 @@ function ToDo() {
       <Header />
       <br />
       <h2 className="text-2xl font-bold mb-4">ToDo List</h2>
-      <table className="w-full border-collapse border border-gray-600 shadow-lg shadow-teal-500 transition-all duration-300">
+      <table className="w-full border-collapse border border-gray-600 shadow-md shadow-teal-500 transition-all duration-500">
         <thead>
           <tr className="bg-gray-700 text-white">
             <th className="border border-gray-600 px-4 py-2 text-center">ID</th>
@@ -100,14 +101,14 @@ function ToDo() {
             ))}
         </tbody>
       </table>
-      <div className="mt-4"></div> {/* Glow is already applied to the table */}
+      <div className="mt-4"></div>
       {todos.length > 0 && (
         <ReactPaginate
           previousLabel={"< Previous"}
           nextLabel={"Next >"}
           pageCount={pageCount}
           onPageChange={changePage}
-          containerClassName="flex justify-center items-center space-x-4 mt-10" // Increased margin-top (mt-6)
+          containerClassName="flex justify-center items-center space-x-4 mt-10"
           pageClassName="border border-gray-300 px-3 py-1 rounded hover:bg-blue-500 cursor-pointer text-lg"
           activeClassName="bg-blue-500 text-white text-lg"
           pageLinkClassName="flex items-center justify-center w-full h-full"
@@ -149,4 +150,4 @@ function ToDo() {
   );
 }
 
-export default ToDo;
+export default TodoPage;
