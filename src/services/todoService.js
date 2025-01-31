@@ -2,10 +2,6 @@ import axios from "axios";
 
 const API_URL = "https://jsonplaceholder.typicode.com/todos";
 
-/**
- * Fetches a list of todos (first 200).
- * @returns {Promise<Array>}
- */
 export const getTodos = async () => {
   try {
     const response = await axios.get(API_URL);
@@ -16,11 +12,6 @@ export const getTodos = async () => {
   }
 };
 
-/**
- * Fetches details of a single todo by ID.
- * @param {number} id - The ID of the todo.
- * @returns {Promise<Object>}
- */
 export const getTodoById = async (id) => {
   try {
     const response = await axios.get(`${API_URL}/${id}`);

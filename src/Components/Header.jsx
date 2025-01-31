@@ -2,8 +2,7 @@ import React from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaSignOutAlt } from "react-icons/fa"; // Import logout icon
 import { useState } from "react"; // Import useState for loading state
-import { useAuth } from "../context/AuthContext"; // Correct import for authentication
-
+import { useAuth } from "../context/AuthContext";
 function Header() {
   const [isLoggingOut, setIsLoggingOut] = useState(false); // Loading state for logout
   const navigate = useNavigate();

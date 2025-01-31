@@ -1,13 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
-<<<<<<< HEAD
 import Header from "../components/Header";
 import Pagination from "../components/Pagination";
 import { getTodos, getTodoById } from "../services/todoService"; // Import API service
-=======
-import axios from "axios";
-import Header from "../components/Header";
-import Pagination from "../components/Pagination"; // Import the new component
->>>>>>> bdc3715f7d8e75080f91b141dabfb6b9e3f82c39
 
 function TodoPage() {
   const [todos, setTodos] = useState([]);
