@@ -1,26 +1,22 @@
 import React from "react";
+import ReactPaginate from "react-paginate";
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+const Pagination = ({ pageCount, onPageChange }) => {
   return (
-    <div className="flex justify-center mt-4">
-      <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className="px-4 py-2 bg-blue-600 text-white rounded mr-2"
-      >
-        Prev
-      </button>
-      <span>
-        {currentPage} of {totalPages}
-      </span>
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className="px-4 py-2 bg-blue-600 text-white rounded ml-2"
-      >
-        Next
-      </button>
-    </div>
+    <ReactPaginate
+      previousLabel={"< Previous"}
+      nextLabel={"Next >"}
+      pageCount={pageCount}
+      onPageChange={onPageChange}
+      containerClassName="flex justify-center items-center space-x-4 mt-10"
+      pageClassName="border border-gray-300 px-3 py-1 rounded hover:bg-blue-500 cursor-pointer text-lg"
+      activeClassName="bg-blue-500 text-white text-lg"
+      pageLinkClassName="flex items-center justify-center w-full h-full"
+      previousClassName="flex items-center justify-center cursor-pointer text-lg mx-2"
+      nextClassName="flex items-center justify-center cursor-pointer text-lg mx-2"
+      breakClassName="px-3 py-1 text-gray-500 cursor-pointer"
+      breakLabel="..."
+    />
   );
 };
 
