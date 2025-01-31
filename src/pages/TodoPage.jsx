@@ -1,8 +1,7 @@
-import React from "react";
-import { useEffect, useState, useRef } from "react";
-import axios from "axios";
-import ReactPaginate from "react-paginate";
+import React, { useEffect, useState, useRef } from "react";
 import Header from "../components/Header";
+import Pagination from "../components/Pagination";
+import { getTodos, getTodoById } from "../services/todoService"; // Import API service
 
 function TodoPage() {
   const [todos, setTodos] = useState([]);
@@ -13,17 +12,21 @@ function TodoPage() {
   const todosPerPage = 9;
   const pagesVisited = pageNumber * todosPerPage;
 
+  // Fetch todos on component mount
   useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/todos")
-      .then((response) => setTodos(response.data.slice(0, 200)));
+    const fetchTodos = async () => {
+      const data = await getTodos();
+      setTodos(data);
+    };
+    fetchTodos();
   }, []);
 
+  // Fetch and display a single todo
   const handleTodoClick = async (id, event) => {
-    const response = await axios.get(
-      `https://jsonplaceholder.typicode.com/todos/${id}`
-    );
-    setSelectedTodo(response.data);
+    const data = await getTodoById(id);
+    if (data) {
+      setSelectedTodo(data);
+    }
 
     const buttonRect = event.target.getBoundingClientRect();
     const popupWidth = 250;
@@ -103,20 +106,7 @@ function TodoPage() {
       </table>
       <div className="mt-4"></div>
       {todos.length > 0 && (
-        <ReactPaginate
-          previousLabel={"< Previous"}
-          nextLabel={"Next >"}
-          pageCount={pageCount}
-          onPageChange={changePage}
-          containerClassName="flex justify-center items-center space-x-4 mt-10"
-          pageClassName="border border-gray-300 px-3 py-1 rounded hover:bg-blue-500 cursor-pointer text-lg"
-          activeClassName="bg-blue-500 text-white text-lg"
-          pageLinkClassName="flex items-center justify-center w-full h-full"
-          previousClassName="flex items-center justify-center cursor-pointer text-lg mx-2"
-          nextClassName="flex items-center justify-center cursor-pointer text-lg mx-2"
-          breakClassName="px-3 py-1 text-gray-500 cursor-pointer"
-          breakLabel="..."
-        />
+        <Pagination pageCount={pageCount} onPageChange={changePage} />
       )}
       {selectedTodo && (
         <div
