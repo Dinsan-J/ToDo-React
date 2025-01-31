@@ -1,8 +1,7 @@
-import React from "react";
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import ReactPaginate from "react-paginate";
 import Header from "../components/Header";
+import Pagination from "../components/Pagination"; // Import the new component
 
 function TodoPage() {
   const [todos, setTodos] = useState([]);
@@ -103,20 +102,7 @@ function TodoPage() {
       </table>
       <div className="mt-4"></div>
       {todos.length > 0 && (
-        <ReactPaginate
-          previousLabel={"< Previous"}
-          nextLabel={"Next >"}
-          pageCount={pageCount}
-          onPageChange={changePage}
-          containerClassName="flex justify-center items-center space-x-4 mt-10"
-          pageClassName="border border-gray-300 px-3 py-1 rounded hover:bg-blue-500 cursor-pointer text-lg"
-          activeClassName="bg-blue-500 text-white text-lg"
-          pageLinkClassName="flex items-center justify-center w-full h-full"
-          previousClassName="flex items-center justify-center cursor-pointer text-lg mx-2"
-          nextClassName="flex items-center justify-center cursor-pointer text-lg mx-2"
-          breakClassName="px-3 py-1 text-gray-500 cursor-pointer"
-          breakLabel="..."
-        />
+        <Pagination pageCount={pageCount} onPageChange={changePage} />
       )}
       {selectedTodo && (
         <div
