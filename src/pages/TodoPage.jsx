@@ -1,25 +1,15 @@
-<<<<<<< HEAD
 import React, { useEffect, useState, useRef } from "react";
 import Header from "../components/Header";
 import Pagination from "../components/Pagination";
 import { getTodos, getTodoById } from "../services/todoService"; // Import API service
-
-=======
-import React, { useEffect, useState } from "react";
-import Header from "../components/Header";
-import Pagination from "../components/Pagination";
-import { getTodos, getTodoById } from "../services/todoService"; // Import API service
 import Popup from "../components/TodoDetailsPopup";
->>>>>>> da4c493 (Final commit - React ToDo App)
+
 function TodoPage() {
   const [todos, setTodos] = useState([]);
   const [selectedTodo, setSelectedTodo] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
-<<<<<<< HEAD
   const popupRef = useRef(null);
-=======
->>>>>>> da4c493 (Final commit - React ToDo App)
   const todosPerPage = 9;
   const pagesVisited = pageNumber * todosPerPage;
 
@@ -57,7 +47,6 @@ function TodoPage() {
     setPopupPosition({ top: topPosition, left: leftPosition });
   };
 
-<<<<<<< HEAD
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -70,8 +59,6 @@ function TodoPage() {
     };
   }, []);
 
-=======
->>>>>>> da4c493 (Final commit - React ToDo App)
   const pageCount = Math.ceil(todos.length / todosPerPage);
 
   const changePage = ({ selected }) => {
@@ -123,40 +110,11 @@ function TodoPage() {
         <Pagination pageCount={pageCount} onPageChange={changePage} />
       )}
       {selectedTodo && (
-<<<<<<< HEAD
-        <div
-          ref={popupRef}
-          className="absolute bg-gradient-to-r from-teal-500 to-blue-600 text-white p-6 rounded-lg shadow-lg w-80 max-w-full border-2 border-gray-700 transform transition-all duration-300 scale-100 hover:scale-105"
-          style={{
-            top: popupPosition.top,
-            left: popupPosition.left,
-            zIndex: 1000,
-          }}
-        >
-          <h3 className="text-2xl font-semibold mb-4">ToDo Details</h3>
-          <p className="mb-2">
-            <strong>ID:</strong> {selectedTodo.id}
-          </p>
-          <p className="mb-2">
-            <strong>Title:</strong> {selectedTodo.title}
-          </p>
-          <p className="mb-4">
-            <strong>Completed:</strong> {selectedTodo.completed ? "Yes" : "No"}
-          </p>
-          <button
-            onClick={() => setSelectedTodo(null)}
-            className="w-full bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-800 transition duration-300 transform hover:scale-105"
-          >
-            Close
-          </button>
-        </div>
-=======
         <Popup
           todo={selectedTodo}
           position={popupPosition}
           onClose={() => setSelectedTodo(null)}
         />
->>>>>>> da4c493 (Final commit - React ToDo App)
       )}
     </div>
   );
