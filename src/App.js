@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import React from "react";
+>>>>>>> da4c493 (Final commit - React ToDo App)
 import {
   BrowserRouter as Router,
   Route,

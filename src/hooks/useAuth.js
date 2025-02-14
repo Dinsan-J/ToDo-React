@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { createContext, useContext, useState, useEffect } from "react";
+=======
+import { React, createContext, useContext, useState, useEffect } from "react";
+>>>>>>> da4c493 (Final commit - React ToDo App)
 
 // Create Auth Context
 const AuthContext = createContext();
