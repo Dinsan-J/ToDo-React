@@ -17,7 +17,7 @@ const LoginPage = () => {
     // Simulating API login
     setTimeout(() => {
       if (username === "admin" && password === "admin") {
-        login({ username }); // Call login from AuthContext
+        login(); // Call login from AuthContext
         toast.success("Login successful!");
         navigate("/todo");
       } else {
