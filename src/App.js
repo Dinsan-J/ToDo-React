@@ -7,12 +7,12 @@ import {
 } from "react-router-dom";
 import Login from "./pages/LoginPage";
 import ToDo from "./pages/TodoPage";
-import { AuthProvider } from "./context/AuthContext"; // Import AuthProvider
+
 import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
-    <AuthProvider>
+    <>
       {" "}
       {/* Wrap the Routes with AuthProvider */}
       <Router>
@@ -23,7 +23,7 @@ function App() {
         </Routes>
         <Toaster />
       </Router>
-    </AuthProvider>
+    </>
   );
 }
 
